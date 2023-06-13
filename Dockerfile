@@ -6,13 +6,13 @@ FROM jupyter/datascience-notebook:2023-06-01
 
 WORKDIR /pea-chat
 
+# Copy project files into the image
+COPY . .
+
 # Install required packages
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install -r requirements.txt
-
-# Copy project files into the image
-COPY . .
 
 # Run the main.py script
 CMD ["python", "main.py"]
