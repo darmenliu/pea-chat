@@ -9,7 +9,7 @@ WORKDIR /pea-chat
 # Install required packages
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
-RUN PIP install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy project files into the image
 COPY . .
