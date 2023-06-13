@@ -1,14 +1,18 @@
-# TODO main function
+import brain.openai.openai as OpenAIChatbot
 
 def main():
-    # TODO main function body
+    #Invoke openai chatbot in a for loop, it will run forever, and it will ask for input
+    #from user and then it will print the response from openai chatbot
+    while True:
+        # Ask for input from user
+        prompt = input("You: ")
+        chatbot = OpenAIChatbot()
+        # Print response from openai chatbot
+        print("OpenAI: " + chatbot.ask(prompt=prompt))
+        # Pass
     pass
 
-# Run main as a for loop, it will run forever
+# Run main
 if __name__ == "__main__":
-    # Run main as a for loop, it will run forever
-    while True:
-        # Run main
-        main()
-        # Sleep 1 second
-        time.sleep(5)
+    main()
+
