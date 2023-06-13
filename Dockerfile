@@ -14,5 +14,6 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install -r requirements.txt
 
-# Run the main.py script
-CMD ["python", "main.py"]
+# Run with a loop to keep the container running in dockerfile with shell
+ENTRYPOINT ["sh", "fake_runner.sh"]
+
