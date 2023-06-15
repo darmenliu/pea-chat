@@ -1,4 +1,4 @@
-import brain.openai.openai as OpenAIChatbot
+from brain.openai.openai import OpenAIChatbot
 
 def main():
     #Invoke openai chatbot in a for loop, it will run forever, and it will ask for input
