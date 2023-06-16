@@ -2,7 +2,7 @@
 # It is based on the official jupyter notebook image
 # It installs the required packages for the pea-chat project
 # It copies the project files into the image
-FROM jupyter/datascience-notebook:2023-06-01
+FROM jupyter/datascience-notebook:2023-06-13
 
 WORKDIR /pea-chat
 
