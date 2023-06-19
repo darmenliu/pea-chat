@@ -1,3 +1,4 @@
+from prompt_manager.prompt import Prompt
 # prompt manager is a class that manages the prompts for the chatbot
 # Prompt manager contain a lists of prompts
 # Prompt manager can add, remove, edit, and save prompts
@@ -23,8 +24,28 @@ class PromptManager:
     def save(self):
         pass
     
+    # Load prompts from prompts.csv file
+    # prompts.csv file is a csv file that contains the following fields:
+    # act,prompt
+    # act is a string that contains the action to do
+    # prompt is a string that contains the prompt
+    # Load prompt = prompt(act, "", prompt, "", "", "", [])
+    def loadPromptsFromCSV(self, filename):
+        # Open prompts.csv file
+        with open(filename, "r") as file:
+            # Read all lines from prompts.csv file
+            lines = file.readlines()
+            # For each line in lines
+            for line in lines:
+                # Split line by comma
+                line = line.split(",")
+                # Create a prompt
+                prompt = Prompt(line[0], "", line[1], "", "", "", [])
+                # Add prompt to prompts
+                self.add(prompt)
+
     def load(self):
-        pass
+        self.loadPromptsFromCSV("prompts.csv")
     
     def export(self):
         pass

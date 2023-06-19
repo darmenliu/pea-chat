@@ -1,7 +1,7 @@
 import json
 # prompt is a struct that contains the following fields:
 # prompt = {
-#     "name": str,
+#     "act": str,
 #     "summary": str,
 #     "prompt": str,
 #     "describe": str,
@@ -11,8 +11,8 @@ import json
 # }
 
 class prompt:
-    def __init__(self, name, summary, prompt, describe, author, date, tags):
-        self.name = name
+    def __init__(self, act, summary, prompt, describe, author, date, tags):
+        self.act = act
         self.summary = summary
         self.prompt = prompt
         self.describe = describe
@@ -26,5 +26,4 @@ class prompt:
     def FromJson(self, json):
         self.__dict__ = json.loads(json)
         return self
-    
     
