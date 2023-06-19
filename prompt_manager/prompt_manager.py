@@ -1,4 +1,7 @@
+import tinydb
 from prompt_manager.prompt import Prompt
+from prompt_manager.prompt_db import PromptDb
+
 # prompt manager is a class that manages the prompts for the chatbot
 # Prompt manager contain a lists of prompts
 # Prompt manager can add, remove, edit, and save prompts
@@ -9,13 +12,15 @@ from prompt_manager.prompt import Prompt
 
 class PromptManager:
     def __init__(self):
-        self.prompts = []
+        self.awesome_prompts = []
+        self.prompts_db = []
+        self.db = PromptDb()
     
     def add(self, prompt):
-        self.prompts.append(prompt)
+        self.db.add(prompt)
     
     def remove(self, prompt):
-        self.prompts.remove(prompt)
+        self.db.remove(prompt)
     
     def edit(self, prompt):
         self.remove(prompt)
@@ -42,10 +47,15 @@ class PromptManager:
                 # Create a prompt
                 prompt = Prompt(line[0], "", line[1], "", "", "", [])
                 # Add prompt to prompts
-                self.add(prompt)
+                self.awesome_prompts.append(prompt)
+
+    # Load prompts from tinydb database
+    def loadPromptsFromTinyDB(self):
+        self.prompts_db = self.db.load()
 
     def load(self):
         self.loadPromptsFromCSV("prompts.csv")
+        self.loadPromptsFromTinyDB()
     
     def export(self):
         pass
