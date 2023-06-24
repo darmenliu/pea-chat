@@ -20,8 +20,8 @@ class UIChat:
         history[-1][1] = response
         return history
 
-    def Launch(self):
-        with gr.Blocks() as demo:
+    def chatbot_frame(self):
+        with gr.Tab("Chatbot"):
             chatbot = gr.Chatbot([], elem_id="chatbot").style(height=300)
 
             with gr.Row():
@@ -40,6 +40,3 @@ class UIChat:
             file_msg = btn.upload(self.add_file, [chatbot, btn], [chatbot], queue=False).then(
                 self.bot, chatbot, chatbot
             )
-
-        demo.launch()
-

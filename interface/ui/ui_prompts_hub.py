@@ -15,4 +15,5 @@ class PromptHubPage:
     def __init__(self):
         self.prompt_manager = PromptManager()
         self.prompt_manager.load()
-        self.prompts = self.prompt_man
+
+    
