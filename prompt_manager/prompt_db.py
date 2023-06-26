@@ -4,23 +4,26 @@ class PromptDb:
     def __init__(self):
         self.db = tinydb.TinyDB("prompts.json")
     
-    def add(self, prompt):
+    def Add(self, prompt):
         self.db.insert(prompt)
     
-    def remove(self, prompt):
+    def Remove(self, prompt):
         self.db.remove(prompt)
     
-    def edit(self, prompt):
-        self.remove(prompt)
-        self.add(prompt)
+    def Edit(self, prompt):
+        self.Remove(prompt)
+        self.Add(prompt)
     
     # Save prompts to tinydb file
-    def save(self, prompts):
+    def Save(self, prompts):
         for prompt in prompts:
-            self.add(prompt)
-    
-    def load(self):
-        return self.db.all()
+            self.Add(prompt)
+    # Load prompts from tinydb file, and return with a dict of prompts
+    def Load(self) -> dict:
+        prompts = {}
+        for prompt in self.db.all():
+            prompts[prompt["act"]] = prompt
+        return prompts
     
     def export(self):
         pass

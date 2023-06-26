@@ -1,5 +1,6 @@
 import gradio as gr
-# from prompt_manager.prompt_manager import PromptManager
+from prompt_manager.prompt_manager import PromptManager
+from prompt_manager.prompt import Prompt
 
 # Prompts hub provide the page to display prompts, and user can edit,
 # add, save, prompts.
@@ -13,24 +14,21 @@ import gradio as gr
 
 class PromptHub:
     def __init__(self):
-#        self.prompt_manager = PromptManager()
-#        self.prompt_manager.load()
+        self.prompt_manager = PromptManager()
+        self.prompt_manager.Load()
         pass
     
     def prompt_box(self, prompt):
         with gr.Box():
-            gr.Textbox(label="prompt 1")
+            gr.Textbox(label=prompt.GetAct(), value=prompt.GetPrompt(), interactive=True, show_label=True, show_copy_button=True)
             with gr.Row():
                 gr.Button(value="Save", label="Save")
                 gr.Button(Value="Apply", label="Apply")
 
     def prompt_hub_frame(self):
         with gr.Tab("PromptsHub"):
-            with gr.Row():
-                self.prompt_box("prompt 1")
-                self.prompt_box("prompt 1")
-                self.prompt_box("prompt 1")
-                self.prompt_box("prompt 1")
-
-                
-
+            # Get prompts from prompt manager and display them with prompt box
+            # and every four prompts in a row
+            prompts = self.prompt_manager.GetAwesomePrompts()
+            for key, prompt in prompts.items():
+                self.prompt_box(prompt)

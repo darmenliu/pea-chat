@@ -12,21 +12,28 @@ from prompt_manager.prompt_db import PromptDb
 
 class PromptManager:
     def __init__(self):
-        self.awesome_prompts = []
-        self.prompts_db = []
+        # awesome prompts with a map
+        self.awesome_prompts = {}
+        self.prompts_db = {}
         self.db = PromptDb()
     
-    def add(self, prompt):
-        self.db.add(prompt)
+    def Add(self, prompt):
+        self.db.Add(prompt)
     
-    def remove(self, prompt):
-        self.db.remove(prompt)
+    def Remove(self, prompt):
+        self.db.Remove(prompt)
     
-    def edit(self, prompt):
-        self.remove(prompt)
-        self.add(prompt)
+    def Edit(self, prompt):
+        self.Remove(prompt)
+        self.Add(prompt)
     
-    def save(self):
+    def GetAwesomePrompts(self) -> dict:
+        return self.awesome_prompts
+
+    def GetPromptsDb(self) -> dict:
+        return self.prompts_db
+
+    def Save(self):
         pass
     
     # Load prompts from prompts.csv file
@@ -47,14 +54,14 @@ class PromptManager:
                 # Create a prompt
                 prompt = Prompt(line[0], "", line[1], "", "", "", [])
                 # Add prompt to prompts
-                self.awesome_prompts.append(prompt)
+                self.awesome_prompts[prompt.act] = prompt
 
     # Load prompts from tinydb database
     def loadPromptsFromTinyDB(self):
-        self.prompts_db = self.db.load()
+        self.prompts_db = self.db.Load()
 
-    def load(self):
-        self.loadPromptsFromCSV("prompts.csv")
+    def Load(self):
+        self.loadPromptsFromCSV("prompt_manager/data/prompts.csv")
         self.loadPromptsFromTinyDB()
     
     def export(self):

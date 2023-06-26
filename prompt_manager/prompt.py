@@ -10,7 +10,7 @@ import json
 #     "tags": list[str]
 # }
 
-class prompt:
+class Prompt:
     def __init__(self, act, summary, prompt, describe, author, date, tags):
         self.act = act
         self.summary = summary
@@ -19,6 +19,27 @@ class prompt:
         self.author = author
         self.date = date
         self.tags = tags
+
+    def GetAct(self):
+        return self.act
+
+    def GetSummary(self):
+        return self.summary
+
+    def GetPrompt(self):
+        return self.prompt
+
+    def GetDescribe(self):
+        return self.describe
+
+    def GetAuthor(self):
+        return self.author
+
+    def GetDate(self):
+        return self.date
+
+    def GetTags(self):
+        return self.tags
 
     def ToJson(self):
         return json.dumps(self.__dict__)
