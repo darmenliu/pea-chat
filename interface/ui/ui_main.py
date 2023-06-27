@@ -9,6 +9,6 @@ class UIMain: # This class is the main UI class, it's the first thing that runs 
 
     def Launch(self):
         with gr.Blocks() as demo:
-            self.chat.chatbot_frame()
+            self.chat.ChatbotFrame()
             self.prompt_hub.prompt_hub_frame()
         demo.launch()

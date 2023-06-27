@@ -20,10 +20,9 @@ class UIChat:
         history[-1][1] = response
         return history
 
-    def chatbot_frame(self):
-        with gr.Tab("Chatbot"):
+    def ChatBox(self):
+        with gr.Box():
             chatbot = gr.Chatbot([], elem_id="chatbot").style(height=300)
-
             with gr.Row():
                 with gr.Column(scale=0.85):
                     txt = gr.Textbox(
@@ -40,3 +39,16 @@ class UIChat:
             file_msg = btn.upload(self.add_file, [chatbot, btn], [chatbot], queue=False).then(
                 self.bot, chatbot, chatbot
             )
+
+    def ChatSetting(self):
+        with gr.Box():
+            gr.Dropdown(["ChatGPT", "BingChat", "Bard"], label="Chat Engine", default="ChatGPT")
+            gr.Dropdown(["Linux Terminal", "English Translator and Improver", "Spoken English Teacher and Improver", "Personal Trainer", "AI Assisted Doctor"], label="Prompts", default="English Translator and Improver")
+
+    def ChatbotFrame(self):
+        with gr.Tab("Chatbot"):
+            with gr.Row():
+                with gr.Column(scale=0.85):
+                    self.ChatBox()
+                with gr.Column(scale=0.15, min_width=0):
+                    self.ChatSetting()
