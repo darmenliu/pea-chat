@@ -20,16 +20,23 @@ class PromptHub:
     
     def prompt_box(self, prompt):
         with gr.Box():
-            gr.Textbox(label=prompt.GetAct(), value=prompt.GetPrompt(), interactive=True, show_label=True, show_copy_button=True)
+            gr.Textbox(label=prompt.GetAct(), lines = 10, value=prompt.GetPrompt(), interactive=True, show_label=True, show_copy_button=True)
             with gr.Row():
-                saveButton = gr.Button(value="Save", label="Save")
-                tryButton = gr.Button(Value="Apply", label="Apply")
+                saveButton = gr.Button(value="Save")
+                tryButton = gr.Button(Value="Test")
 
     def prompt_hub_frame(self):
         with gr.Tab("PromptsHub"):
-            # Get prompts from prompt manager and display them with prompt box
-            # and every four prompts in a row
             prompts = self.prompt_manager.GetAwesomePrompts()
-            for key, prompt in prompts.items():
-                with gr.Row():
-                    self.prompt_box(prompt)
+            keys = list(prompts.keys())
+            length = len(keys)
+            for i in range (0, length):
+                if i % 4 == 0:
+                    with gr.Row():
+                        self.prompt_box(prompts[keys[i]])
+                        if i + 1 < length :
+                            self.prompt_box(prompts[keys[i + 1]])
+                        if i + 2 < length :
+                            self.prompt_box(prompts[keys[i + 2]])
+                        if i + 3 < length :
+                            self.prompt_box(prompts[keys[i + 3]])
