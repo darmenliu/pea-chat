@@ -44,7 +44,7 @@ class ChatbotServer(Resource):
         # Get the response from the backend chatbot
         response = ""
         if chatbot == "openai":
-            response = self.openai_chatbot.ask(prompt=prompt)
+            response = self.openai_chatbot.Ask(prompt=prompt)
         elif chatbot == "newbing":
             response = self.newbing_chatbot.ask(prompt=prompt)
         # Return the response to the client

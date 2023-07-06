@@ -1,9 +1,10 @@
 import gradio as gr
 from brain.openai.openai import OpenAIChatbot
+from brain.chatbot import ChatBot
 
 class UIChat:
-    def __init__(self):
-        self.chatbot = OpenAIChatbot()
+    def __init__(self, chatbot: ChatBot):
+        self.chatbot = chatbot
 
     def add_text(self, history, text):
         history = history + [(text, None)]
@@ -16,7 +17,7 @@ class UIChat:
     def bot(self, history):
         response = "**That's cool!**"
         if history[-1][0] != "": # text
-            response = self.chatbot.ask(prompt=history[-1][0])
+            response = self.chatbot.Ask(prompt=history[-1][0])
         history[-1][1] = response
         return history
 
